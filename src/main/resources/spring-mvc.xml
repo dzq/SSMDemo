@@ -30,10 +30,6 @@
     <mvc:annotation-driven/>
     <!-- 2.静态资源默认servlet配置-->
     <mvc:default-servlet-handler/>
-<!-- <mvc:resources mapping="swagger-ui.html" location="META-INF/resources"/>-->
-<!--    <mvc:resources location="classpath:/META-INF/resources/" mapping="swagger-ui.html"/>-->
-<!--    <mvc:resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"/>-->
-<!--    <mvc:resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"/>-->
     <!-- 3.配置jsp 显示ViewResolver视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>

@@ -25,9 +25,12 @@ public class BookAPIController {
     private BookService bookService;
 
 
-
+    /**
+     * 书籍列表
+     * @return
+     */
     @GetMapping(value = "/book/list")
-    @ApiOperation(value = "查询所有书籍", notes = "无需添加参数", code = 200, produces = "application/json")
+    @ApiOperation(value = "查询所有书籍", notes = "查询所有书籍", code = 200, produces = "application/json")
     public BookListResponse list() {
         BookListResponse body = new BookListResponse();
         List<Books> list =  bookService.queryAllBook();
@@ -35,11 +38,53 @@ public class BookAPIController {
         return body;
     }
 
-    @RequestMapping(value = "/book/{id}", method = RequestMethod.GET)
+    /**
+     * 查询指定id的数据
+     * @param id
+     * @return
+     */
+    @GetMapping(value = "/book/{id}")
     @ApiOperation(value = "查询指定ID的书籍", notes = "书籍ID", code = 200, produces = "application/json")
     public BookResponse queryBookById(@PathVariable("id") int id) {
         BookResponse body = new BookResponse();
         body.setData(bookService.queryBookById(id));
+        return body;
+    }
+
+    /**
+     * 添加书籍
+     * @param books 书籍数据
+     * @return
+     */
+    @PostMapping(value = "/book")
+    @ApiOperation(value = "添加书籍", notes = "添加书籍", code = 200, produces = "application/json")
+    public BookResponse addBook(Books books) {
+        BookResponse body = new BookResponse();
+        body.setData(bookService.addBook(books));
+        return body;
+    }
+    /**
+     * 删除书籍
+     * @param id 书籍id
+     * @return
+     */
+    @DeleteMapping(value = "/book/{id}")
+    @ApiOperation(value = "删除书籍", notes = "删除指定ID的书籍", code = 200, produces = "application/json")
+    public BookResponse deleteBook(@PathVariable("id") int id) {
+        BookResponse body = new BookResponse();
+        body.setData(bookService.deleteBookById(id));
+        return body;
+    }
+    /**
+     * 更新书籍
+     * @param books 书籍数据
+     * @return
+     */
+    @PutMapping(value = "/book")
+    @ApiOperation(value = "更新书籍", notes = "更新书籍信息", code = 200, produces = "application/json")
+    public BookResponse updateBook(Books books) {
+        BookResponse body = new BookResponse();
+        body.setData(bookService.updateBook(books));
         return body;
     }
 }

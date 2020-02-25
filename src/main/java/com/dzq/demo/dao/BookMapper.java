@@ -1,25 +1,11 @@
 package com.dzq.demo.dao;
 
 import com.dzq.demo.pojo.Books;
+import com.dzq.demo.service.BookService;
 
 import java.util.List;
 
-public interface BookMapper {
+public interface BookMapper extends BookService {
 
-    //增加一个Book
-    int addBook(Books book);
 
-    //根据id删除一个Book
-    int deleteBookById(int id);
-
-    //更新Book
-    int updateBook(Books books);
-
-    //根据id查询,返回一个Book
-    Books queryBookById(int id);
-
-    //查询全部Book,返回list集合
-    List<Books> queryAllBook();
-    //查询包含名称book,返回list集合
-    List<Books> queryBookByName(String bookName);
 }

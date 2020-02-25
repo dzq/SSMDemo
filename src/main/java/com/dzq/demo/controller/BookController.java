@@ -22,6 +22,11 @@ public class BookController {
     @Qualifier("BookServiceImpl")
     private BookService bookService;
 
+    /**
+     * 书籍列表
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/allBook", method = RequestMethod.GET)
     public String list(Model model) {
         List<Books> list = bookService.queryAllBook();
@@ -29,11 +34,20 @@ public class BookController {
         return "allBook";
     }
 
+    /**
+     * 跳转到添加书籍页面
+     * @return
+     */
     @RequestMapping(value = "/toAddBook", method = RequestMethod.GET)
     public String toAddPaper() {
         return "addBook";
     }
 
+    /**
+     * 添加书籍
+     * @param books 书籍数据
+     * @return
+     */
     @RequestMapping(value = "/addBook", method = RequestMethod.GET)
     public String addPaper(Books books) {
         System.out.println(books);
@@ -41,6 +55,12 @@ public class BookController {
         return "redirect:/book/allBook";
     }
 
+    /**
+     * 跳转到更新书籍页面
+     * @param model
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/toUpdateBook", method = RequestMethod.GET)
     public String toUpdateBook(Model model, int id) {
         Books books = bookService.queryBookById(id);
@@ -49,6 +69,12 @@ public class BookController {
         return "updateBook";
     }
 
+    /**
+     * 更新书籍信息
+     * @param model
+     * @param book 书籍数据
+     * @return
+     */
     @RequestMapping(value = "/updateBook", method = RequestMethod.POST)
     public String updateBook(Model model, Books book) {
         System.out.println(book);
@@ -57,12 +83,24 @@ public class BookController {
         model.addAttribute("books", books);
         return "redirect:/book/allBook";
     }
+
+    /**
+     * 删除书籍
+     * @param id 书籍id
+     * @return
+     */
     @RequestMapping(value = "/del/{bookId}", method = RequestMethod.GET)
     public String deleteBookByIdeBook(@PathVariable("bookId") int id) {
         bookService.deleteBookById(id);
         return "redirect:/book/allBook";
     }
 
+    /**
+     * 根据名称查询书籍
+     * @param bookName 书籍名称
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/queryBook", method = RequestMethod.POST)
     public String queryBook(String bookName, Model model) {
         List<Books> list = bookService.queryBookByName(bookName);

@@ -14,7 +14,7 @@ public class BookServiceImpl implements BookService {
         this.bookMapper = bookMapper;
     }
 
-    public int addBook(Books book) {
+    public Books addBook(Books book) {
         return bookMapper.addBook(book);
     }
 
@@ -22,7 +22,7 @@ public class BookServiceImpl implements BookService {
         return bookMapper.deleteBookById(id);
     }
 
-    public int updateBook(Books books) {
+    public Books updateBook(Books books) {
         return bookMapper.updateBook(books);
     }
 
